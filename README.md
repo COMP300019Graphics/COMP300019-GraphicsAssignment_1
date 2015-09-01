@@ -1,3 +1,3 @@
-# COMP300019-GraphicsAssignment_1
+#  For any moment you want to leave a short message, feel free to do so
 
-# This is a comment I left at 9.36pm on 9/1/2015.
+0.
