@@ -1,0 +1,5 @@
+#ignore any file ending with ~
+*~
+
+#ignore TODO file in curr dir
+/TODO
