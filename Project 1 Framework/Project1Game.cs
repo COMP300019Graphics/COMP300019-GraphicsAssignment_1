@@ -28,10 +28,14 @@ namespace Project1
     // Use this namespace here in case we need to use Direct3D11 namespace as well, as this
     // namespace will override the Direct3D11.
     using SharpDX.Toolkit.Graphics;
+    using SharpDX.Toolkit.Input;
 
     public class Project1Game : Game
     {
         private GraphicsDeviceManager graphicsDeviceManager;
+        private KeyboardManager keyboardManager;
+        public KeyboardState keyboardState;
+        public Camera camera;
         private GameObject model;
 
         /// <summary>
@@ -47,26 +51,30 @@ namespace Project1
             Content.RootDirectory = "Content";
         }
 
+       
+
         protected override void LoadContent()
         {
             model = new Landscape(this);
-
-            // Create an input layout from the vertices
+            
+            //models = new List<Shape>();
+           // models.Add(new Cube(this));
 
             base.LoadContent();
         }
 
+
         protected override void Initialize()
         {
             Window.Title = "Project 1";
-
+            camera = new Camera(this);
             base.Initialize();
         }
 
         protected override void Update(GameTime gameTime)
         {
             model.Update(gameTime);
-
+            camera.Update(gameTime);
             // Handle base.Update
             base.Update(gameTime);
         }
