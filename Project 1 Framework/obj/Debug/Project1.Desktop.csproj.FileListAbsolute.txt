@@ -36,3 +36,15 @@ C:\Users\Glory Wiguno\Documents\Visual Studio 2013\Projects\Project 1 Framework\
 C:\Users\Glory Wiguno\Documents\Visual Studio 2013\Projects\Project 1 Framework\bin\Debug\SharpDX.Toolkit.Game.xml
 C:\Users\Glory Wiguno\Documents\Visual Studio 2013\Projects\Project 1 Framework\bin\Debug\SharpDX.Toolkit.Graphics.xml
 C:\Users\Glory Wiguno\Documents\Visual Studio 2013\Projects\Project 1 Framework\bin\Debug\SharpDX.Toolkit.Input.xml
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\Assimp32.dll
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\Assimp64.dll
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.D3DCompiler.dll
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.Direct2D1.dll
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.Toolkit.Compiler.dll
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\AssimpNet.dll
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.Toolkit.Compiler.xml
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.D3DCompiler.xml
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.Direct2D1.xml
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\SharpDX.Direct3D9.xml
+C:\Users\Glory Wiguno\Documents\GitHub\COMP300019-GraphicsAssignment_1\Project 1 Framework\bin\Debug\AssimpNet.xml

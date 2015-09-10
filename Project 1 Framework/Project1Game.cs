@@ -23,6 +23,7 @@ using System;
 using SharpDX;
 using SharpDX.Toolkit;
 
+
 namespace Project1
 {
     // Use this namespace here in case we need to use Direct3D11 namespace as well, as this
@@ -37,6 +38,8 @@ namespace Project1
         public KeyboardState keyboardState;
         public Camera camera;
         private GameObject model;
+        public MouseManager mouseManager;
+        public MouseState mouseState;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Project1Game" /> class.
@@ -50,6 +53,7 @@ namespace Project1
             // for loading contents with the ContentManager
             Content.RootDirectory = "Content";
             keyboardManager = new KeyboardManager(this);
+            mouseManager = new MouseManager(this);
 
 
 
@@ -78,9 +82,18 @@ namespace Project1
         protected override void Update(GameTime gameTime)
         {
             keyboardState = keyboardManager.GetState();
+            mouseState = mouseManager.GetState();
             model.Update(gameTime);
             camera.Update();
             camera.UpdatePoV(gameTime);
+            
+
+            if (keyboardState.IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+                this.Dispose();
+            }
+
             // Handle base.Update
             base.Update(gameTime);
         }
