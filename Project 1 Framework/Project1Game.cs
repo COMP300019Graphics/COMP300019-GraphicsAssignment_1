@@ -49,13 +49,17 @@ namespace Project1
             // Setup the relative directory to the executable directory
             // for loading contents with the ContentManager
             Content.RootDirectory = "Content";
+            keyboardManager = new KeyboardManager(this);
+
+
+
         }
 
        
 
         protected override void LoadContent()
         {
-            model = new Landscape(this);
+            model = new Landscape(this, this.camera);
             
             //models = new List<Shape>();
            // models.Add(new Cube(this));
@@ -73,8 +77,10 @@ namespace Project1
 
         protected override void Update(GameTime gameTime)
         {
+            keyboardState = keyboardManager.GetState();
             model.Update(gameTime);
-            camera.Update(gameTime);
+            camera.Update();
+            camera.UpdatePoV(gameTime);
             // Handle base.Update
             base.Update(gameTime);
         }

@@ -5,13 +5,16 @@ using System.Text;
 using SharpDX;
 using SharpDX.Toolkit;
 
+
 namespace Project1
 {
     using SharpDX.Toolkit.Graphics;
-    class Landscape : ColoredGameObject
-    {  
-        public Landscape(Game game)
-        {
+    public class Landscape : ColoredGameObject
+    {   
+        public Camera camera;
+        public Landscape(Game game, Camera camera)
+        {   
+            
             Vector3 frontBottomLeft = new Vector3(-1.0f, -1.0f, -1.0f);
             Vector3 frontTopLeft = new Vector3(-1.0f, 1.0f, -1.0f);
             Vector3 frontTopRight = new Vector3(1.0f, 1.0f, -1.0f);
@@ -75,21 +78,23 @@ namespace Project1
             basicEffect = new BasicEffect(game.GraphicsDevice)
             {
                 VertexColorEnabled = true,
-                View = Matrix.LookAtLH(new Vector3(0, 0, -5), new Vector3(0, 0, 0), Vector3.UnitY),
-                Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f),
+                View = camera.View,
+                Projection = camera.Projection,
                 World = Matrix.Identity
             };
 
             inputLayout = VertexInputLayout.FromBuffer(0, vertices);
             this.game = game;
+            this.camera = camera;
         }
 
         public override void Update(GameTime gameTime)
         {
             // Rotate the cube.
-            var time = (float)gameTime.TotalGameTime.TotalSeconds;
-            basicEffect.World = Matrix.RotationX(time) * Matrix.RotationY(time * 2.0f) * Matrix.RotationZ(time * .7f);
-            basicEffect.Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f);
+           // var time = (float)gameTime.TotalGameTime.TotalSeconds;
+            //basicEffect.World = Matrix.RotationX(time*0.01f) * Matrix.RotationY(time * 2.0f*0.01f) * Matrix.RotationZ(time * .7f*0.01f);
+            //basicEffect.Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f);
+            basicEffect.View = this.camera.View;
         }
 
         public override void Draw(GameTime gameTime)
