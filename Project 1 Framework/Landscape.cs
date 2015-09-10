@@ -13,7 +13,10 @@ namespace Project1
     {   
         public Camera camera;
         public Landscape(Game game, Camera camera)
-        {   
+        {   // added camera class here, since the Landscape
+            // somehow still inherits Game eventhough
+            // i tried to change the parameter from constructor 
+            // from Game into Project1Game
             
             Vector3 frontBottomLeft = new Vector3(-1.0f, -1.0f, -1.0f);
             Vector3 frontTopLeft = new Vector3(-1.0f, 1.0f, -1.0f);
@@ -43,36 +46,36 @@ namespace Project1
                     new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.Orange),
                     new VertexPositionNormalColor(frontTopRight, frontTopRightNormal, Color.Orange),
                     new VertexPositionNormalColor(frontBottomRight, frontBottomRightNormal, Color.Orange),
-                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.Orange), // BACK
-                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.Orange),
-                    new VertexPositionNormalColor(backTopLeft, backTopLeftNormal, Color.Orange),
-                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.Orange),
-                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.Orange),
-                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.Orange),
+                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.Blue), // BACK
+                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.Blue),
+                    new VertexPositionNormalColor(backTopLeft, backTopLeftNormal, Color.Blue),
+                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.Blue),
+                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.Blue),
+                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.Blue),
                     new VertexPositionNormalColor(frontTopLeft, frontTopLeftNormal, Color.OrangeRed), // Top
                     new VertexPositionNormalColor(backTopLeft, backTopLeftNormal, Color.OrangeRed),
                     new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.OrangeRed),
                     new VertexPositionNormalColor(frontTopLeft, frontTopLeftNormal, Color.OrangeRed),
                     new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.OrangeRed),
                     new VertexPositionNormalColor(frontTopRight, frontTopRightNormal, Color.OrangeRed),
-                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.OrangeRed), // Bottom
-                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.OrangeRed),
-                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.OrangeRed),
-                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.OrangeRed),
-                    new VertexPositionNormalColor(frontBottomRight, frontBottomRightNormal, Color.OrangeRed),
-                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.OrangeRed),
-                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.DarkOrange), // Left
-                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(backTopLeft, backTopLeftNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(backTopLeft, backTopLeftNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(frontTopLeft, frontTopLeftNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(frontBottomRight, frontBottomRightNormal, Color.DarkOrange), // Right
-                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(frontBottomRight, frontBottomRightNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(frontTopRight, frontTopRightNormal, Color.DarkOrange),
-                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.DarkOrange),
+                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.Red), // Bottom
+                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.Red),
+                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.Red),
+                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.Red),
+                    new VertexPositionNormalColor(frontBottomRight, frontBottomRightNormal, Color.Red),
+                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.Red),
+                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.Green), // Left
+                    new VertexPositionNormalColor(backBottomLeft, backBottomLeftNormal, Color.Green),
+                    new VertexPositionNormalColor(backTopLeft, backTopLeftNormal, Color.Green),
+                    new VertexPositionNormalColor(frontBottomLeft, frontBottomLeftNormal, Color.Green),
+                    new VertexPositionNormalColor(backTopLeft, backTopLeftNormal, Color.Green),
+                    new VertexPositionNormalColor(frontTopLeft, frontTopLeftNormal, Color.Green),
+                    new VertexPositionNormalColor(frontBottomRight, frontBottomRightNormal, Color.White), // Right
+                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.White),
+                    new VertexPositionNormalColor(backBottomRight, backBottomRightNormal, Color.White),
+                    new VertexPositionNormalColor(frontBottomRight, frontBottomRightNormal, Color.White),
+                    new VertexPositionNormalColor(frontTopRight, frontTopRightNormal, Color.White),
+                    new VertexPositionNormalColor(backTopRight, backTopRightNormal, Color.White),
                 });
 
             basicEffect = new BasicEffect(game.GraphicsDevice)
@@ -88,12 +91,11 @@ namespace Project1
             this.camera = camera;
         }
 
+
+
         public override void Update(GameTime gameTime)
-        {
-            // Rotate the cube.
-           // var time = (float)gameTime.TotalGameTime.TotalSeconds;
-            //basicEffect.World = Matrix.RotationX(time*0.01f) * Matrix.RotationY(time * 2.0f*0.01f) * Matrix.RotationZ(time * .7f*0.01f);
-            //basicEffect.Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f);
+        {   
+            // update, not sure if it is the right way
             basicEffect.View = this.camera.View;
         }
 

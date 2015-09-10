@@ -63,10 +63,9 @@ namespace Project1
 
         protected override void LoadContent()
         {
+            //  currently, the only thing that is rendered
             model = new Landscape(this, this.camera);
             
-            //models = new List<Shape>();
-           // models.Add(new Cube(this));
 
             base.LoadContent();
         }
@@ -80,7 +79,8 @@ namespace Project1
         }
 
         protected override void Update(GameTime gameTime)
-        {
+        {   
+            // to get some input coming from the mouse and keyboard
             keyboardState = keyboardManager.GetState();
             mouseState = mouseManager.GetState();
             model.Update(gameTime);

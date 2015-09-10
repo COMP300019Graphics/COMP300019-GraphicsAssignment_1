@@ -7,10 +7,25 @@ using SharpDX;
 using SharpDX.Toolkit;
 using SharpDX.Toolkit.Input;
 
+
+
+
 namespace Project1
-{
+{   
+    /*
+     * Glory Wiguno (690810) 
+     * Graphics and Interactions Project1
+     * A very simple and naive implementation of 
+     * controlable camera. (In this current state)
+     */
     public class Camera
-    {
+    {   
+        /*
+         * Very simple implementation of moving camera;
+         * still cant work as a proper 6-degree-of-freedom camera 
+         * that is desired in the project spec;
+         * it stil doesnt even work as a proper first person camera
+         */
         public Matrix View;
         public Matrix Projection;
         public Project1Game game;
@@ -45,13 +60,13 @@ namespace Project1
             
             // Move forward
             if (game.keyboardState.IsKeyDown(Keys.W)){
-                Console.WriteLine("Forward");
+                
                 this.Position.Z += gameTime.ElapsedGameTime.Milliseconds * speed;
             }
             // Move backward
             if (game.keyboardState.IsKeyDown(Keys.S)){
                 this.Position.Z -= gameTime.ElapsedGameTime.Milliseconds * speed;
-                Console.WriteLine("Down");
+               
             }
 
 
@@ -71,22 +86,20 @@ namespace Project1
 
             // roll left
             if (game.keyboardState.IsKeyDown(Keys.Q)){
-                this.LookAt.X += gameTime.ElapsedGameTime.Milliseconds * speed;
+                this.Up.Z += gameTime.ElapsedGameTime.Milliseconds * speed;
             }
 
             // roll right
             if (game.keyboardState.IsKeyDown(Keys.E)){
-                this.LookAt.X -= gameTime.ElapsedGameTime.Milliseconds * speed;
+                this.Up.Z -= gameTime.ElapsedGameTime.Milliseconds * speed;
 
             }
 
 
-
-
-
             
-            // for yaaaaws
-            // 
+            // for yaw and pitch,
+            // the camera movement is still a bit slow
+            
             if (game.mouseState.X == 0){
                 this.LookAt.X += gameTime.ElapsedGameTime.Milliseconds * speed;
             }
@@ -96,16 +109,14 @@ namespace Project1
             }
 
             if (game.mouseState.Y ==1 ){
-                this.LookAt.Z -= gameTime.ElapsedGameTime.Milliseconds * speed;
+                this.LookAt.Y += gameTime.ElapsedGameTime.Milliseconds * speed;
                 
             }
             if (game.mouseState.Y == 0)
             {
-                this.LookAt.Z += gameTime.ElapsedGameTime.Milliseconds * speed;
-
-
+                this.LookAt.Y -= gameTime.ElapsedGameTime.Milliseconds * speed;
             }
-             
+            
 
 
 
