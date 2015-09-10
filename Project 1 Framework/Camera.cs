@@ -88,14 +88,21 @@ namespace Project1
             // for yaaaaws
             // 
             if (game.mouseState.X == 0){
-                this.LookAt.Y += gameTime.ElapsedGameTime.Milliseconds * speed;
+                this.LookAt.X += gameTime.ElapsedGameTime.Milliseconds * speed;
             }
             if (game.mouseState.X == 1)
             {
-                this.LookAt.Y -= gameTime.ElapsedGameTime.Milliseconds * speed;
+                this.LookAt.X -= gameTime.ElapsedGameTime.Milliseconds * speed;
             }
 
-            if (game.mouseState.Y > 0){
+            if (game.mouseState.Y ==1 ){
+                this.LookAt.Z -= gameTime.ElapsedGameTime.Milliseconds * speed;
+                
+            }
+            if (game.mouseState.Y == 0)
+            {
+                this.LookAt.Z += gameTime.ElapsedGameTime.Milliseconds * speed;
+
 
             }
              
