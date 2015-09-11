@@ -42,9 +42,9 @@ namespace Project1
         {   
 
             // position of the camera
-            this.Position = new Vector3(0, 0, -10);
+            this.Position = new Vector3(0, 10, -10);
             // where the camera is looking at
-            this.LookAt = new Vector3(0, 0, 10);
+            this.LookAt = new Vector3(0, 10, 10);
             // where the upside of the camera is facing
             this.Up =  Vector3.UnitY;
 

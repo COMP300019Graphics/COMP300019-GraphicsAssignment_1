@@ -14,21 +14,24 @@ namespace Project1
     class Landscape : ColoredGameObject
     {
         // fields
-        private float[,] heightMap;
+        //private float[,] heightMap;
         private Random random = new Random();
-        private static int sideDivisions = 5;
+        private static int sideDivisions = 16;
         private static float heightMax = 1.0f;
         public Camera camera;
+        
 
         // constructor
         public Landscape(Game game, Camera camera)
         {
+            this.game = game;
+            this.camera = camera;
             // values generation: generate 2d array for height map
             float[,] heightMap = generateHeightMap(sideDivisions, heightMax);
 
-            //print_2Darray(heightMap, sideDivisions);
+            
             // create terrain: mapping 2d array values into vertex definitions
-            //generateTerrian(heightMap);
+            generateTerrain(heightMap,sideDivisions);
 
 
             
@@ -41,9 +44,8 @@ namespace Project1
                 World = Matrix.Identity
             };
 
-            inputLayout = VertexInputLayout.FromBuffer(0, vertices);
-            this.game = game;
-            this.camera = camera;
+            
+            
         }
 
         // print a 2D square array
@@ -139,10 +141,60 @@ namespace Project1
 
 
         // mapping 2d array values into vertex definitions
-        private void generateTerrain(float[,] heightMap)
+        private void generateTerrain(float[,] heightMap, int sideDivisions)
         {
-            //throw new NotImplementedException();
+           VertexPositionNormalColor[] Vs = new VertexPositionNormalColor[(sideDivisions-1)*(sideDivisions-1)*6];
+            var k = 0;
+            for (int r = 0; r < sideDivisions-1; r++)
+            {
+                for (int c = 0; c < sideDivisions-1; c++)
+                {   
+                    var pointA = new Vector3(r,heightMap[r,c],c);
+                    var pointB = new Vector3(r,heightMap[r,c+1],c+1);
+                    var pointC = new Vector3(r+1, heightMap[r+1,c+1],c+1);
+                    var pointD = new Vector3(r+1, heightMap[r+1,c+1],c+1);
+                    var pointE = new Vector3(r+1, heightMap[r+1,c],c);
+                    var pointF = new Vector3(r,heightMap[r,c],c);
+
+
+                    var normal1 = NormalIt(pointA,pointB,pointC);
+                    var normal2 = NormalIt(pointD,pointE,pointF);
+
+
+                    Vs[k]=(new VertexPositionNormalColor(pointA,normal1, Color.Green ));
+                    Vs[k+1]=(new VertexPositionNormalColor(pointB,normal1, Color.Green ));
+                    Vs[k+2]=(new VertexPositionNormalColor(pointC,normal1, Color.Green ));
+                    Vs[k+3]=(new VertexPositionNormalColor(pointD,normal2, Color.Green ));
+                    Vs[k+4]=(new VertexPositionNormalColor(pointE,normal2, Color.Green ));
+                    Vs[k+5]=(new VertexPositionNormalColor(pointF,normal2, Color.Green ));
+                    
+                    k+=6;
+                }
+            }
+
+            
+            vertices = Buffer.Vertex.New(game.GraphicsDevice, Vs);
+            inputLayout = VertexInputLayout.FromBuffer(0, vertices);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Vector3 NormalIt(Vector3 a, Vector3 b, Vector3 c) {
+            var normalised = Vector3.Cross(a-b, a-c);
+            return normalised;
+        }
+
+
 
         public override void Update(GameTime gameTime)
         {
