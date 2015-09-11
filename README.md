@@ -1,17 +1,16 @@
-
+* Refer to BraceGame
 
 1. Randomly seeded fractal landscape;
 - 	Write Diamond-Square Algorithm in landscape.cs to generate the “title” effect, using Direct3D for drawing;
 
 #Generate 2D matrix: Methods Initialization and testing 
-void Diamond(), 
-void Square(), 
-float Random( float min, float max); 
-void SetHeight(float height); 
-float GetHeight();
+Procedures:
+Four coner assigned same height values;
+void Diamond(): for generating the midpoint value, average the four conver value and add a randmon value within the heightRanges; 
+void Square(): Taking each diamond of four points, generate a random value at the center of the diamond. Calculate the midpoint value by averaging the corner values, plus a random amount generated in the same range as used for the diamond step. This gives you squares again. 
 
 #Vertex mapping from 2D Matrix:
-Add new vertex definition for generated vertex values from the 2D matrix;
+Loop through 2d array, add new vertex definitions for generated vertex values from the 2D array;
 
 
 2. Camera Motion: “camera.cs”
