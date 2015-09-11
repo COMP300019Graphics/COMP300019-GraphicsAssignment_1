@@ -1,1 +1,22 @@
 
+
+1. Randomly seeded fractal landscape;
+- 	Write Diamond-Square Algorithm in landscape.cs to generate the “title” effect, using Direct3D for drawing;
+
+#Generate 2D matrix: Methods Initialization and testing 
+void Diamond(), 
+void Square(), 
+float Random( float min, float max); 
+void SetHeight(float height); 
+float GetHeight();
+
+#Vertex mapping from 2D Matrix:
+Add new vertex definition for generated vertex values from the 2D matrix;
+
+
+2. Camera Motion: “camera.cs”
+- Camera rotation (mouse), translation (movement: keyboard WASD, QE)
+
+Apply view space to render all objects in a common(consistent) World View; (unlikely in project1, just one object being rendered)
+Apply transformation matrix: translation, scale, rotation matrix, in accordance with user’s inputs (3-4 different 
+matrices used here);
