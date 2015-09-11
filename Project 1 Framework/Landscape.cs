@@ -8,18 +8,9 @@ using SharpDX.Toolkit;
 namespace Project1
 {
     using SharpDX.Toolkit.Graphics;
-<<<<<<< HEAD
-    public class Landscape : ColoredGameObject
-    {   
-        
-        public Camera camera;
-        public Landscape(Game game, Camera camera)
-        {   // added camera class here, since the Landscape
-            // somehow still inherits Game eventhough
-            // i tried to change the parameter from constructor 
-            // from Game into Project1Game
-            
-=======
+
+    
+
     class Landscape : ColoredGameObject
     {
         // fields
@@ -27,9 +18,10 @@ namespace Project1
         private Random random = new Random();
         private static int sideDivisions = 5;
         private static float heightMax = 1.0f;
-       
+        public Camera camera;
+
         // constructor
-        public Landscape(Game game)
+        public Landscape(Game game, Camera camera)
         {
             // values generation: generate 2d array for height map
             float[,] heightMap = generateHeightMap(sideDivisions, heightMax);
@@ -38,7 +30,7 @@ namespace Project1
             // create terrain: mapping 2d array values into vertex definitions
             //generateTerrian(heightMap);
 
->>>>>>> fdd81632982b9b829127a7001888f4375ce1fb9f
+
             Vector3 frontBottomLeft = new Vector3(-1.0f, -1.0f, -1.0f);
             Vector3 frontTopLeft = new Vector3(-1.0f, 1.0f, -1.0f);
             Vector3 frontTopRight = new Vector3(1.0f, 1.0f, -1.0f);
@@ -115,6 +107,7 @@ namespace Project1
 
             inputLayout = VertexInputLayout.FromBuffer(0, vertices);
             this.game = game;
+            this.camera = camera;
         }
 
         // print a 2D square array
@@ -210,7 +203,7 @@ namespace Project1
 
 
         // mapping 2d array values into vertex definitions
-        private void generateTerrian(float[,] heightMap)
+        private void generateTerrain(float[,] heightMap)
         {
             //throw new NotImplementedException();
         }
@@ -218,9 +211,9 @@ namespace Project1
         public override void Update(GameTime gameTime)
         {
             // Rotate the cube.
-            var time = (float)gameTime.TotalGameTime.TotalSeconds;
-            basicEffect.World = Matrix.RotationX(time) * Matrix.RotationY(time * 2.0f) * Matrix.RotationZ(time * .7f);
-            basicEffect.Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f);
+           
+            basicEffect.World = this.camera.View;
+            
         }
 
         public override void Draw(GameTime gameTime)
