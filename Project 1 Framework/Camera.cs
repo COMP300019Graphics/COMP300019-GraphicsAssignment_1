@@ -34,93 +34,91 @@ namespace Project1
         public Vector3 LookAt;
         public Vector3 Up;
 
-        private float speed = 0.006f;
+        private float speed = 0.005f;
 
 
         // Ensures that all objects are being rendered from a consistent viewpoint
         public Camera(Project1Game game)
-        {
-            this.Position = new Vector3(0, 0, -10);
-            this.LookAt = new Vector3(0, 0, 0);
-            this.Up =  new Vector3 (0,1,0);
+        {   
 
-            View = Matrix.LookAtLH(this.Position, this.LookAt, this.Up);
+            // position of the camera
+            this.Position = new Vector3(0, 0, -10);
+            // where the camera is looking at
+            this.LookAt = new Vector3(0, 0, 10);
+            // where the upside of the camera is facing
+            this.Up =  Vector3.UnitY;
+
+            View = Matrix.LookAtLH(this.Position, this.Position+this.LookAt, this.Up);
             Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f);
             this.game = game;
         }
 
         
-        public void Update()
-        {   // update for projection
-            Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f);
-        }
+       
 
         // 'update for lookat'
-        public  void UpdatePoV(GameTime gameTime) { 
+        public  void Update(GameTime gameTime) {
+            // update for the projection
+            Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4.0f, (float)game.GraphicsDevice.BackBuffer.Width / game.GraphicsDevice.BackBuffer.Height, 0.1f, 100.0f);
+
+            // update for camera movements and orientation based on 
+            // keyboard and mouse input
+            if (game.keyboardState.IsKeyDown(Keys.W))
+                this.Position += Vector3.Normalize(this.LookAt - this.Position) * gameTime.ElapsedGameTime.Milliseconds * speed;
+            if (game.keyboardState.IsKeyDown(Keys.S))
+                this.Position -= Vector3.Normalize(this.LookAt - this.Position) * gameTime.ElapsedGameTime.Milliseconds * speed;
+
+            if (game.keyboardState.IsKeyDown(Keys.A))
+                this.Position -= Vector3.Normalize(Vector3.Cross(this.Up, this.LookAt)) * gameTime.ElapsedGameTime.Milliseconds *speed;
+            if (game.keyboardState.IsKeyDown(Keys.D))
+                this.Position += Vector3.Normalize(Vector3.Cross(this.Up, this.LookAt)) * gameTime.ElapsedGameTime.Milliseconds *speed;
+
+
+           
+
+
+
+            // Yaw rotation
+
+            this.LookAt = Vector3.TransformCoordinate(this.LookAt,
+                          Matrix.RotationAxis(this.Up, (float)(-Math.PI / 4) *
+                          game.mouseState.DeltaX *
+                          gameTime.ElapsedGameTime.Milliseconds * speed*10
+                          ));
+
+
+            // Pitch Rotation
+           
+            this.LookAt = Vector3.TransformCoordinate(this.LookAt,
+                          Matrix.RotationAxis(Vector3.Cross(this.Up, this.LookAt),
+                          (float)(-Math.PI / 4) * (game.mouseState.DeltaY) *
+                          gameTime.ElapsedGameTime.Milliseconds * speed));
             
-            // Move forward
-            if (game.keyboardState.IsKeyDown(Keys.W)){
-                
-                this.Position.Z += gameTime.ElapsedGameTime.Milliseconds * speed;
-            }
-            // Move backward
-            if (game.keyboardState.IsKeyDown(Keys.S)){
-                this.Position.Z -= gameTime.ElapsedGameTime.Milliseconds * speed;
-               
-            }
 
 
-            // move right
-            if (game.keyboardState.IsKeyDown(Keys.D)){
-                this.Position.X -= gameTime.ElapsedGameTime.Milliseconds * speed;
-                this.LookAt.X -= gameTime.ElapsedGameTime.Milliseconds * speed;
-            }
-
-            // move left
-            if (game.keyboardState.IsKeyDown(Keys.A)){
-                this.Position.X += gameTime.ElapsedGameTime.Milliseconds * speed;
-                this.LookAt.X += gameTime.ElapsedGameTime.Milliseconds * speed;
-            }
-
-
-
-            // roll left
-            if (game.keyboardState.IsKeyDown(Keys.Q)){
-                this.Up.Z += gameTime.ElapsedGameTime.Milliseconds * speed;
-            }
-
-            // roll right
-            if (game.keyboardState.IsKeyDown(Keys.E)){
-                this.Up.Z -= gameTime.ElapsedGameTime.Milliseconds * speed;
-
-            }
-
-
+            this.Up = Vector3.TransformCoordinate(this.Up,
+                      Matrix.RotationAxis(Vector3.Cross(this.Up, this.LookAt),
+                      (float)(Math.PI / 4) * (game.mouseState.DeltaY) *
+                      gameTime.ElapsedGameTime.Milliseconds * speed));
             
-            // for yaw and pitch,
-            // the camera movement is still a bit slow
             
-            if (game.mouseState.X == 0){
-                this.LookAt.X += gameTime.ElapsedGameTime.Milliseconds * speed;
-            }
-            if (game.mouseState.X == 1)
+
+            // Roll rotation
+            if (game.keyboardState.IsKeyDown(Keys.E))
             {
-                this.LookAt.X -= gameTime.ElapsedGameTime.Milliseconds * speed;
+                this.Up = Vector3.TransformCoordinate(this.Up,
+                    Matrix.RotationAxis(this.LookAt,
+                    (float)(Math.PI /4) *speed));
             }
-
-            if (game.mouseState.Y ==1 ){
-                this.LookAt.Y += gameTime.ElapsedGameTime.Milliseconds * speed;
-                
-            }
-            if (game.mouseState.Y == 0)
+            if (game.keyboardState.IsKeyDown(Keys.Q))
             {
-                this.LookAt.Y -= gameTime.ElapsedGameTime.Milliseconds * speed;
+                this.Up = Vector3.TransformCoordinate(this.Up,
+                    Matrix.RotationAxis(this.LookAt,
+                    -(float)(Math.PI / 4)*speed ));
             }
             
 
-
-
-            View = Matrix.LookAtLH(this.Position, this.LookAt, this.Up);
+            View = Matrix.LookAtLH(this.Position,this.Position+ this.LookAt, this.Up);
             
         }
 

@@ -11,6 +11,7 @@ namespace Project1
     using SharpDX.Toolkit.Graphics;
     public class Landscape : ColoredGameObject
     {   
+        
         public Camera camera;
         public Landscape(Game game, Camera camera)
         {   // added camera class here, since the Landscape

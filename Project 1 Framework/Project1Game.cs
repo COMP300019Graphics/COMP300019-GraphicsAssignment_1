@@ -84,10 +84,10 @@ namespace Project1
             keyboardState = keyboardManager.GetState();
             mouseState = mouseManager.GetState();
             model.Update(gameTime);
-            camera.Update();
-            camera.UpdatePoV(gameTime);
             
+            camera.Update(gameTime);
 
+            
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
                 this.Exit();
