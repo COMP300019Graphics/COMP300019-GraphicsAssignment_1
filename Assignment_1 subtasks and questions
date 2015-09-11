@@ -1,51 +1,22 @@
-# Post any questions in the questions' section below - Part1;
-# Post all of the procedures, sub-tasks as below - Part2;
-# NB. Before commiting changes to Part1, be sure you make "noticeable changes" and the "reasons" it's changed.
 
-Part1 - Questions
-...
-3.
-
-2.
-
-1. - Try to be familiar with the basic operations, 
-     I'm currently trying to finish the sync setting. Let me know if you know how to it.
-
-
-Part2 - Tasks
-1. 
-Randomly seeded fractal landscape;
+1. Randomly seeded fractal landscape;
 - 	Write Diamond-Square Algorithm in landscape.cs to generate the “title” effect, using Direct3D for drawing;
 
-Procedures:
-a. Project setup:
-Decide deleting useless staff in “landscape.cs”; 
-Display a 4-polygon to the screen;
-Adjust camera orientation so that the landscape plane is seeable, a simple 4-polygon in 3D view; 
-->
-b. Generate 2D matrix: Methods Initialization and testing 
-void Initialize_2dArray( int dimension); 
+#Generate 2D matrix: Methods Initialization and testing 
 void Diamond(), 
 void Square(), 
 float Random( float min, float max); 
 void SetHeight(float height); 
 float GetHeight();
-->
-c. Vertex mapping from 2D Matrix:
+
+#Vertex mapping from 2D Matrix:
 Add new vertex definition for generated vertex values from the 2D matrix;
 
 
-2. 
-Camera Motion: “camera.cs”
+2. Camera Motion: “camera.cs”
 - Camera rotation (mouse), translation (movement: keyboard WASD, QE)
+
 Apply view space to render all objects in a common(consistent) World View; (unlikely in project1, just one object being rendered)
 Apply transformation matrix: translation, scale, rotation matrix, in accordance with user’s inputs (3-4 different 
-matrices used here, free available online);
-
-*Refer to youtube, lab 4 camera.cs, online documentation to get the basic ideas*
-
-
-3.
-# Part1, 2 first.
-Surface properties: “”
+matrices used here);
 
